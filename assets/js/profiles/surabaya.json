@@ -1,0 +1,19 @@
+{
+  "_comment": "AlamatTepat — profil wilayah SURABAYA. Data murni, digabung di atas generic.json. Nama jalan yang berbeda makna JANGAN disatukan di sini; gunakan Kamus Sinonim untuk typo. Catatan: pola 'X/Y' dibaca sebagai '<X> No. <Y>' (bukan Blok). Isi 'blockStreets' HANYA untuk jalan yang memang memakai sistem Blok (mis. area ruko); kata 'BLK/BLOK' yang tertulis eksplisit selalu dianggap blok.",
+  "cities": ["SURABAYA", "SBY"],
+  "provinces": ["JAWA TIMUR", "JATIM"],
+  "kelurahanNames": [
+    "ALON ALON CONTONG", "ALON ALON",
+    "ALUN ALUN CONTONG", "ALUN ALUN",
+    "TEMBOK DUKUH"
+  ],
+  "aliases": { "ALUN": "ALON" },
+  "dedupeExempt": ["ALON", "ALUN"],
+  "blockStreets": [],
+  "titleOverrides": { "KOREM": "Korem", "RUSUNAWA": "Rusunawa", "BHASKARA": "Bhaskara" },
+  "rusun": {
+    "detect": ["RUSUN", "RUSUNAWA", "BHASKARA"],
+    "canonical": "RUSUNAWA BHASKARA JAYA",
+    "blockHints": ["JOHAR", "GG", "GANG"]
+  }
+}

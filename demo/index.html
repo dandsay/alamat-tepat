@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruang Coba — AlamatTepat</title>
+  <meta name="description" content="Coba langsung mesin pembaku alamat Indonesia: ketik alamat mentah, lihat hasil bakunya, uraian polanya, dan jalankan seluruh uji emas di browser Anda.">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root {
+      --bg: #f1f5f9; --card: #fff; --text: #0f172a; --muted: #64748b;
+      --border: #e2e8f0; --primary: #2563eb; --primary-soft: #dbeafe;
+      --success: #16a34a; --success-soft: #dcfce7;
+      --warn: #b45309; --warn-soft: #fef3c7;
+      --danger: #dc2626; --danger-soft: #fee2e2;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --radius: 14px;
+    }
+    :root[data-theme="dark"] {
+      --bg: #0b1120; --card: #111827; --text: #e5e7eb; --muted: #94a3b8;
+      --border: #1f2937; --primary: #60a5fa; --primary-soft: #1e3a5f;
+      --success: #4ade80; --success-soft: #14351f;
+      --warn: #fbbf24; --warn-soft: #3a2e0a;
+      --danger: #f87171; --danger-soft: #3a1212;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+    h1 { font-size: 22px; margin: 0; }
+    .sub { font-size: 12.5px; color: var(--muted); margin: 2px 0 0; }
+    .badge { font-family: var(--mono); font-size: 11px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; background: var(--card); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 16px; }
+    label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    textarea { width: 100%; min-height: 74px; margin-top: 8px; padding: 12px; font-family: var(--mono); font-size: 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text); resize: vertical; outline: none; }
+    textarea:focus { border-color: var(--primary); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .chip { all: unset; cursor: pointer; font-family: var(--mono); font-size: 11.5px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: var(--bg); }
+    .chip:hover { border-color: var(--primary); color: var(--primary); }
+    .out { margin-top: 14px; }
+    .baku { font-size: 19px; font-weight: 700; padding: 12px 14px; background: var(--success-soft); color: var(--success); border: 1px solid color-mix(in srgb, var(--success) 30%, transparent); border-radius: 10px; word-break: break-word; }
+    .baku.ragu { background: var(--danger-soft); color: var(--danger); border-color: color-mix(in srgb, var(--danger) 30%, transparent); }
+    .baku.periksa { background: var(--warn-soft); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, transparent); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag { font-size: 12px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 999px; color: var(--text); }
+    .tag b { font-weight: 700; }
+    .conf { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--success-soft); color: var(--success); }
+    .conf.periksa { background: var(--warn-soft); color: var(--warn); }
+    .conf.ragu { background: var(--danger-soft); color: var(--danger); }
+    .why { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .btn { all: unset; cursor: pointer; display: inline-block; background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 10px; }
+    .btn.ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .res { margin-top: 12px; font-family: var(--mono); font-size: 13px; }
+    .res .pass { color: var(--success); }
+    .res .fail { color: var(--danger); }
+    .res details { margin-top: 6px; }
+    .res summary { cursor: pointer; font-size: 12px; color: var(--muted); }
+    footer { font-size: 12px; color: var(--muted); text-align: center; margin-top: 24px; }
+    footer a { color: var(--primary); }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">AT</div>
+      <div>
+        <h1>Ruang Coba — AlamatTepat</h1>
+        <p class="sub">Mesin pembaku alamat Indonesia &middot; jalan penuh di browser Anda, tanpa server</p>
+      </div>
+    </div>
+    <span class="badge" id="buildBadge">memuat…</span>
+  </header>
+
+  <div class="card">
+    <label for="input">Alamat mentah</label>
+    <textarea id="input" spellcheck="false" placeholder="contoh: jl.johar iii blk no.41 surabaya"></textarea>
+    <div class="chips" id="chips"></div>
+    <div class="out" id="out"></div>
+  </div>
+
+  <div class="card">
+    <label>Unggah CSV — cukup kolom alamat</label>
+    <p class="hint">Header wajib memuat kolom alamat (<code>ALAMAT KTP</code> / <code>ALAMAT</code> / <code>JALAN</code>) — delimiter <code>;</code> atau <code>,</code>, kolom lain diabaikan. Diproses 100% di browser Anda.</p>
+    <input type="file" id="csvFile" accept=".csv,.txt" style="margin-top:8px;">
+    <div class="out" id="csvOut"></div>
+  </div>
+
+  <div class="card">
+    <label>Buktikan sendiri</label>
+    <p class="hint">Seluruh 81 uji emas mesin dijalankan di browser Anda, sekarang.</p>
+    <button class="btn" id="runGolden">Jalankan Uji Emas (81)</button>
+    <div class="res" id="goldenOut"></div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/dandsay/alamat-tepat" target="_blank" rel="noopener" style="text-decoration:none;">
+      <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" style="vertical-align:-3px;margin-right:5px;" aria-label="GitHub">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A7.995 7.995 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      github.com/dandsay/alamat-tepat
+    </a>
+    &middot; GPL-3.0-or-later &middot; tidak ada data yang dikirim ke mana pun
+  </footer>
+</div>
+
+<script src="assets/js/normalizer.js"></script>
+<script src="assets/js/fuzzy.js"></script>
+<script src="assets/js/relational.js"></script>
+<script src="assets/js/confidence.js"></script>
+<script src="assets/js/build-info.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  const Conf = AlamatTepatConfidence;
+  let engine = null;
+
+  const CONTOH = [
+    "TAMBAK BAYAN 4 NO.4",
+    "JL.JOHAR III BLK NO.41",
+    "sulung 2/11 surabaya",
+    "TEMBOK SAYURAN GG MEI BUNTU 10-B",
+    "KALIBUTUH 144-C BLK",
+    "DEMAK JAYA I/5,7,8,9 SURABAYA",
+    "GG. Mawar 3 RT 4 RW 5"
+  ];
+
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  $("buildBadge").textContent = "engine v" + (window.ALAMAT_TEPAT_BUILD?.algorithmVersion || "?") + " \u00b7 SHA " + String(window.ALAMAT_TEPAT_BUILD?.algorithmSha256 || "").slice(0, 8) + "\u2026";
+  $("chips").innerHTML = CONTOH.map(c => `<button class="chip" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+  $("chips").addEventListener("click", e => {
+    const b = e.target.closest(".chip");
+    if (!b) return;
+    $("input").value = b.dataset.c;
+    render();
+  });
+  $("input").addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(render, 120);
+  });
+
+  Promise.all([
+    fetch("assets/js/profiles/generic.json", { cache: "no-cache" }).then(r => r.json()),
+    fetch("assets/js/profiles/surabaya.json", { cache: "no-cache" }).then(r => r.json())
+  ]).then(([generic, surabaya]) => {
+    genericProfile = generic;
+    engine = AlamatTepatNormalizer.createNormalizer([generic, surabaya]);
+    $("input").value = CONTOH[0];
+    render();
+  });
+
+  let genericProfile = null;
+
+  // ---------- Unggah CSV: header alamat saja ----------
+  function parseCSVText(text) {
+    const firstLine = text.split(/\r?\n/)[0] || "";
+    const delimiter = (firstLine.match(/;/g) || []).length >= (firstLine.match(/,/g) || []).length ? ";" : ",";
+    const rows = [];
+    let row = [], cur = "", inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (c === '"') {
+        if (inQ && text[i + 1] === '"') { cur += '"'; i++; }
+        else inQ = !inQ;
+      } else if (c === delimiter && !inQ) { row.push(cur.trim()); cur = ""; }
+      else if ((c === "\r" || c === "\n") && !inQ) {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(cur.trim()); cur = "";
+        if (row.some(x => x.length)) rows.push(row);
+        row = [];
+      } else cur += c;
+    }
+    if (cur.length || row.length) {
+      row.push(cur.trim());
+      if (row.some(x => x.length)) rows.push(row);
+    }
+    return rows;
+  }
+
+  function findAddrCol(header) {
+    const names = ["ALAMAT KTP", "ALAMAT", "ALAMAT LENGKAP", "JALAN", "ADDRESS"];
+    const clean = header.map(h => h.replace(/^['"]+|['"]+$/g, "").trim().toUpperCase());
+    for (const n of names) {
+      const i = clean.indexOf(n);
+      if (i !== -1) return i;
+    }
+    for (const n of names) {
+      const i = clean.findIndex(h => h.includes(n));
+      if (i !== -1) return i;
+    }
+    return -1;
+  }
+
+  function downloadPairs(pairs) {
+    let csv = "\uFEFFALAMAT MENTAH;ALAMAT BAKU;JUMLAH BARIS\n";
+    for (const [raw, v] of pairs) csv += [raw, v.std, v.n].join(";") + "\n";
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "alamat_baku.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  $("csvFile").addEventListener("change", e => {
+    const f = e.target.files?.[0];
+    if (!f || !engine) return;
+    const out = $("csvOut");
+    out.innerHTML = "memproses\u2026";
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const rows = parseCSVText(String(reader.result || ""));
+        if (rows.length < 1) { out.innerHTML = '<div class="baku ragu">File kosong.</div>'; return; }
+        let ia = findAddrCol(rows[0]);
+        let data = rows, first = 1;
+        if (ia === -1) {
+          ia = 0;
+          if (rows.length > 1 && /^(ALAMAT|JALAN|ADDRESS)/i.test(rows[0][0] || "")) first = 1;
+          else first = 0;
+        }
+        const pairs = new Map();
+        let nRows = 0;
+        const t0 = performance.now();
+        for (let i = first; i < rows.length; i++) {
+          const raw = String(rows[i][ia] || "").replace(/['"]/g, "").trim();
+          if (!raw) continue;
+          nRows++;
+          const std = engine.standardizeAddress(raw);
+          const k = raw;
+          const cur = pairs.get(k) || { std: std, n: 0 };
+          cur.n++;
+          pairs.set(k, cur);
+        }
+        const ms = performance.now() - t0;
+        const bakuSet = new Set([...pairs.values()].map(v => v.std));
+        const preview = [...pairs.entries()].slice(0, 30).map(([raw, v]) =>
+          `<tr><td><code>${esc(raw)}</code></td><td><strong>${esc(v.std)}</strong></td></tr>`).join("");
+        out.innerHTML = `
+          <div class="tags">
+            <span class="tag">baris: <b>${nRows.toLocaleString("id-ID")}</b></span>
+            <span class="tag">mentah unik: <b>${pairs.size.toLocaleString("id-ID")}</b></span>
+            <span class="tag">baku unik: <b>${bakuSet.size.toLocaleString("id-ID")}</b></span>
+            <span class="tag">waktu: <b>${ms.toFixed(0)} ms</b></span>
+          </div>
+          <div style="margin-top:10px;"><button class="btn ghost" id="dlCsv">Unduh CSV (Mentah → Baku)</button></div>
+          ${preview ? `<table style="margin-top:10px;width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr><th style="text-align:left;border-bottom:1px solid var(--border);padding:6px;">MENTAH</th>
+            <th style="text-align:left;border-bottom:1px solid var(--border);padding:6px;">BAKU</th></tr></thead>
+            <tbody>${preview}</tbody></table>
+            ${pairs.size > 30 ? '<div class="hint">30 pasangan pertama saja — unduh untuk lengkap.</div>' : ''}`;
+        document.getElementById("dlCsv").addEventListener("click", () => downloadPairs(pairs));
+      } catch (err) {
+        out.innerHTML = `<div class="baku ragu">Gagal memproses: ${esc(err.message)}</div>`;
+      }
+    };
+    reader.readAsText(f, "UTF-8");
+  });
+
+  function part(label, val) {
+    return val ? `<span class="tag">${label}: <b>${esc(val)}</b></span>` : "";
+  }
+
+  function render() {
+    const raw = $("input").value;
+    const out = $("out");
+    if (!raw.trim() || !engine) { if (out && !engine) out.innerHTML = "memuat profil wilayah…"; else out.innerHTML = ""; return; }
+    const std = engine.standardizeAddress(raw);
+    const p = engine.parseAddress(raw);
+    const conf = Conf.scoreDoor({ std: std, raws: [raw.trim().toUpperCase()] });
+    const cls = conf.label === "YAKIN" ? "" : conf.label.toLowerCase();
+    out.innerHTML = `
+      <div class="baku ${cls}">${std ? esc(std) : "(string kosong — bukan alamat)"}</div>
+      <div class="tags">
+        ${part("Jalan", p.street && engine.titleCaseStreet(p.street))}
+        ${part("Gang", p.gang)}${part("Blok", p.block)}${part("Posisi", p.prefix)}${part("No", p.number)}
+        ${p.dangling ? `<span class="tag">penanda gantung: <b>${esc(p.dangling)}</b></span>` : ""}
+        <span class="conf ${cls}">${conf.label} ${conf.score}</span>
+      </div>
+      ${conf.reasons.length ? `<div class="why">Alasan: ${esc(conf.reasons.join("; "))}</div>` : ""}`;
+  }
+
+  let timer = null;
+
+  $("runGolden").addEventListener("click", async () => {
+    const btn = $("runGolden");
+    btn.disabled = true;
+    const out = $("goldenOut");
+    out.innerHTML = "memuat uji emas\u2026";
+    try {
+      const res = await fetch("golden.json", { cache: "no-cache" });
+      const golden = await res.json();
+      const engGeneric = AlamatTepatNormalizer.createNormalizer([genericProfile]);
+      const engDefault = engine;
+      const t0 = performance.now();
+      const failures = [];
+      let total = 0;
+      for (const c of golden.cases) {
+        total++;
+        const eng = c.profile === "generic" ? engGeneric : engDefault;
+        const got = eng.standardizeAddress(c.input);
+        if (got !== c.expected) failures.push({ input: c.input, harap: c.expected, dapat: got });
+      }
+      for (const c of golden.synonymCases) {
+        total++;
+        const got = engDefault.standardizeAddress(c.input, c.synonyms);
+        if (got !== c.expected) failures.push({ input: c.input, harap: c.expected, dapat: got });
+      }
+      const ms = (performance.now() - t0).toFixed(1);
+      out.innerHTML = `
+        <div><span class="${failures.length ? "fail" : "pass"}">${total - failures.length}/${total} lulus</span>
+        \u00b7 ${ms} ms \u00b7 ${esc((window.ALAMAT_TEPAT_BUILD?.algorithmVersion || "?"))}</div>
+        ${failures.length ? `<details><summary>${failures.length} kegagalan</summary><ul>${failures.map(f => `<li>${esc(f.input)} \u2192 dapat ${esc(f.dapat)}, harap ${esc(f.harap)}</li>`).join("")}</ul></details>` : ""}`;
+    } catch (err) {
+      out.innerHTML = `<span class="fail">gagal memuat golden.json: ${esc(err.message)}</span>`;
+    }
+    btn.disabled = false;
+  });
+
+  const start = () => { $("input").value = CONTOH[0]; render(); };
+  start();
+})();
+</script>
+</body>
+</html>

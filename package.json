@@ -1,0 +1,26 @@
+{
+  "name": "alamat-tepat",
+  "version": "3.6.3",
+  "description": "Mesin pembaku penulisan alamat Indonesia: pola (L1), fuzzy (L2), relasional (L3), kejujuran (L4) — murni, deterministik, tanpa DOM/network, dikunci SHA-256.",
+  "license": "GPL-3.0-or-later",
+  "keywords": ["alamat", "normalisasi", "standardisasi-alamat", "indonesia", "engine"],
+  "files": [
+    "assets/",
+    "tests/",
+    "tools/",
+    "ALGORITHM.sha256",
+    "ENGINE_HISTORY.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "hash": "node tools/hash-algorithm.mjs",
+    "verify": "node tools/verify.mjs",
+    "test": "node tests/normalizer.test.mjs",
+    "test:lapis": "node tests/lapis.test.mjs",
+    "test:audit": "node tests/audit.test.mjs",
+    "release:engine": "node tools/release-engine.mjs",
+    "build:demo": "rm -rf demo/assets demo/golden.json && cp -r assets demo/assets && cp tests/golden.json demo/golden.json"
+  }
+}

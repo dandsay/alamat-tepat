@@ -1,0 +1,21 @@
+{
+  "_comment": "Eval-set UPGRADE: kasus berlabel manusia untuk membandingkan dua versi mesin (matriks benar->benar, benar->salah=REGRESI, salah->benar=PERBAIKAN, salah->salah). kind=baku (kebenaran manusia) | lock (kunci perilaku kini untuk deteksi perubahan). Dijalankan: node tools/eval-upgrade.mjs --base <ref>",
+  "cases": [
+    { "input": "KALIBUTUH 144-C BLK", "expected": "Jl. Kalibutuh No. 144C", "kind": "baku", "note": "BLK menggantung, kembaran 144/144-B se-RW" },
+    { "input": "KALIBUTUH BARAT 4/75 BLK", "expected": "Jl. Kalibutuh Barat IV No. 75", "kind": "baku", "note": "slash eksplisit + penanda gantung" },
+    { "input": "JL. KALIBUTUH NO. 144 BLK", "expected": "Jl. Kalibutuh No. 144", "kind": "baku", "note": "penanda gantung, kembaran polos banyak" },
+    { "input": "JL. KALIBUTUH GG LEBAR NO. 63 BLK", "expected": "Jl. Kalibutuh Gg. Lebar No. 63", "kind": "baku", "note": "GG bertanda = gang bernama (diubah v3.6.0)" },
+    { "input": "KALIBUTUH TIMUR II-A/10-C", "expected": "Jl. Kalibutuh Timur II-A No. 10C", "kind": "baku", "note": "sufiks gang dipertahankan" },
+    { "input": "KALIBUTUH TIMUR 2-A/10-C", "expected": "Jl. Kalibutuh Timur II-A No. 10C", "kind": "baku", "note": "2 = II, sufiks dipertahankan" },
+    { "input": "DEMAK JAYA VII-A/46", "expected": "Jl. Demak Jaya VII-A No. 46", "kind": "baku", "note": "sufiks gang dipertahankan" },
+    { "input": "SULUNG 11-15/20", "expected": "Jl. Sulung 11 15 XX", "kind": "lock", "note": "ambigu: dikunci sebagai RAGU, jangan ditebak" },
+    { "input": "APARTEMEN GUNAWANGSA TIDAR UNIT B 1911", "expected": "Jl. Apartemen Gunawangsa Tidar Unit B No. 1911", "kind": "lock", "note": "apartemen: kunci perilaku, flag RAGU" },
+    { "input": "JL. SULUNG II/11", "expected": "Jl. Sulung II No. 11", "kind": "baku", "note": "kasus dasar tidak boleh regresi" },
+    { "input": "SULUNG 2/11 SURABAYA", "expected": "Jl. Sulung II No. 11", "kind": "baku", "note": "kasus dasar tidak boleh regresi" },
+    { "input": "JL. JOHAR III BLK NO43", "expected": "Jl. Johar III No. 43", "kind": "baku", "note": "koreksi v3.6.2: BLK tanpa kode = noise, III tetap gang (lapor kampus)" },
+    { "input": "TAMBAK BAYAN 4 NO.4", "expected": "Jl. Tambak Bayan IV No. 4", "kind": "baku", "note": "dedupe jangan makan nomor (4==4)" },
+    { "input": "TAMBAK BAYAN TENGAH 1 / 1", "expected": "Jl. Tambak Bayan Tengah I No. 1", "kind": "baku", "note": "gang==nomor sah" },
+    { "input": "TAMBAK BAYAN I NO I", "expected": "Jl. Tambak Bayan I No. 1", "kind": "baku", "note": "romawi duplikat + NO I" },
+    { "input": "JL.JOHAR III BLK NO.41", "expected": "Jl. Johar III No. 41", "kind": "baku", "note": "kasus lapor: III tetap gang" }
+  ]
+}

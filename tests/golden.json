@@ -1,0 +1,345 @@
+{
+  "_comment": "Kunci perilaku (golden tests) AlamatTepat. 'profile' memilih profil wilayah; default 'surabaya'. Jangan ubah 'expected' tanpa sengaja.",
+  "defaultProfile": "surabaya",
+  "cases": [
+    {
+      "input": "JL. SULUNG NO. 65-A",
+      "expected": "Jl. Sulung No. 65A"
+    },
+    {
+      "input": "JL. SULUNG NO.65-A",
+      "expected": "Jl. Sulung No. 65A"
+    },
+    {
+      "input": "JL. SULUNG 65-A",
+      "expected": "Jl. Sulung No. 65A"
+    },
+    {
+      "input": "SULUNG 65-A",
+      "expected": "Jl. Sulung No. 65A"
+    },
+    {
+      "input": "JL. SULUNG KALI NO.65-A",
+      "expected": "Jl. Sulung Kali No. 65A"
+    },
+    {
+      "input": "JL. SULUNG NO. 65 A",
+      "expected": "Jl. Sulung No. 65A"
+    },
+    {
+      "input": "JL SULUNG 65",
+      "expected": "Jl. Sulung No. 65"
+    },
+    {
+      "input": "JL. SULUNG II/11",
+      "expected": "Jl. Sulung II No. 11"
+    },
+    {
+      "input": "SULUNG 2/11 SURABAYA",
+      "expected": "Jl. Sulung II No. 11"
+    },
+    {
+      "input": "JL. SULUNG II NO. 11",
+      "expected": "Jl. Sulung II No. 11"
+    },
+    {
+      "input": "SULUNG II/11 SULUNG",
+      "expected": "Jl. Sulung II No. 11"
+    },
+    {
+      "input": "JL. SULUNG 4 / 1",
+      "expected": "Jl. Sulung IV No. 1"
+    },
+    {
+      "input": "JL. SULUNG I/7-A",
+      "expected": "Jl. Sulung I No. 7A"
+    },
+    {
+      "input": "SULUNG V/6",
+      "expected": "Jl. Sulung V No. 6"
+    },
+    {
+      "input": "JL.SULUNG III/11-15",
+      "expected": "Jl. Sulung III No. 11-15"
+    },
+    {
+      "input": "SULUNG 2 NO. 06-B",
+      "expected": "Jl. Sulung II No. 6B"
+    },
+    {
+      "input": "JL. JOHAR 2 NO.6",
+      "expected": "Jl. Johar II No. 6"
+    },
+    {
+      "input": "JOHAR 3/1 SURABAYA",
+      "expected": "Jl. Johar III No. 1"
+    },
+    {
+      "input": "JL. JOHAR III BLK NO43",
+      "expected": "Jl. Johar III No. 43"
+    },
+    {
+      "input": "JOHAR III BLK-9 A",
+      "expected": "Jl. Johar III No. 9A"
+    },
+    {
+      "input": "JL. JOHAR NO. 14 BELAKANG",
+      "expected": "Jl. Johar Belakang No. 14"
+    },
+    {
+      "input": "JOHAR BELAKANG NO 04",
+      "expected": "Jl. Johar Belakang No. 4"
+    },
+    {
+      "input": "SULUNG SEKOLAHAN NO.I",
+      "expected": "Jl. Sulung Sekolahan No. 1"
+    },
+    {
+      "input": "JL. SULUNG SEKOLAHAN 4 SURABAYA",
+      "expected": "Jl. Sulung Sekolahan No. 4"
+    },
+    {
+      "input": "JL. SULUNG TENGAH NO.20 B",
+      "expected": "Jl. Sulung Tengah No. 20B"
+    },
+    {
+      "input": "SULUNG TENGAH 34 A",
+      "expected": "Jl. Sulung Tengah No. 34A"
+    },
+    {
+      "input": "JL. SULUNG 2/12 DUSUN. ALON-ALON CONTONG",
+      "expected": "Jl. Sulung II No. 12"
+    },
+    {
+      "input": "JL. SULUNG NO. 3-5-7",
+      "expected": "Jl. Sulung No. 3-5-7"
+    },
+    {
+      "input": "RUSUN BHASKARA JL.JOHAR GG III NO.1",
+      "expected": "Jl. Rusunawa Bhaskara Jaya Blok 3 No. 1"
+    },
+    {
+      "input": "RUSUNAWA, KOREM 084/BHASKARA JL. JOHAR III",
+      "expected": "Jl. Rusunawa Bhaskara Jaya Blok 3"
+    },
+    {
+      "input": "JL. BUBUTAN 16-22 BLOK A8",
+      "expected": "Jl. Bubutan Blok A8 No. 16-22"
+    },
+    {
+      "input": "JL. BUBUTAN 16-22 BLOK B.12-14 SBY",
+      "expected": "Jl. Bubutan Blok B12-14 No. 16-22"
+    },
+    {
+      "input": "JL. BUBUTAN BLOK A 11 NO. 16-22",
+      "expected": "Jl. Bubutan Blok A11 No. 16-22"
+    },
+    {
+      "input": "BALIWERTI 119-121 KAV. 9",
+      "expected": "Jl. Baliwerti Blok 9 No. 119-121"
+    },
+    {
+      "input": "PASAR BESAR WETAN 30/I",
+      "expected": "Jl. Pasar Besar Wetan I No. 30"
+    },
+    {
+      "input": "JL.BALIWERTI N0 75 SURABAYA",
+      "expected": "Jl. Baliwerti No. 75"
+    },
+    {
+      "input": "JL. PASAR BESAR WETAN NO. 26 - B",
+      "expected": "Jl. Pasar Besar Wetan No. 26B"
+    },
+    {
+      "input": "TAMBAK BAYAN TENGAH N0. 39-41",
+      "expected": "Jl. Tambak Bayan Tengah No. 39-41"
+    },
+    {
+      "input": "SULUNG SAMBONGAN NO. 8 DUSUN. ALON ALON",
+      "expected": "Jl. Sulung Sambongan No. 8"
+    },
+    {
+      "input": "JL. KAWATAN GG. 2/12 DUSUN. ALUN-ALUN CONTONG",
+      "expected": "Jl. Kawatan II No. 12"
+    },
+    {
+      "input": "JL. PRABAN KULON III NO. 11 - 15",
+      "expected": "Jl. Praban Kulon III No. 11-15"
+    },
+    {
+      "input": "PRABAN KULON II-4",
+      "expected": "Jl. Praban Kulon II No. 4"
+    },
+    {
+      "input": "JL. ALON-ALON CONTONG NO. 5-B",
+      "expected": "Jl. Alon Alon Contong No. 5B"
+    },
+    {
+      "input": "ALUN-ALUN CONTONG 5-D SURABAYA",
+      "expected": "Jl. Alon Alon Contong No. 5D"
+    },
+    {
+      "input": "JL. CARIKAN SAMBONGAN NO.6-A",
+      "expected": "Jl. Carikan Sambongan No. 6A"
+    },
+    {
+      "input": "JL. MERDEKA NO. 5 BANDUNG",
+      "profile": "generic",
+      "expected": "Jl. Merdeka No. 5"
+    },
+    {
+      "input": "JL. GAJAH MADA NO. 10 JAKARTA",
+      "profile": "generic",
+      "expected": "Jl. Gajah Mada No. 10"
+    },
+    {
+      "input": "JL. MELATI II/7 SEMARANG",
+      "profile": "generic",
+      "expected": "Jl. Melati II No. 7"
+    },
+    {
+      "input": "GG. Mawar 3 RT 4 RW 5 YOGYAKARTA",
+      "profile": "generic",
+      "expected": "Jl. Tanpa Nama Jalan Gg. Mawar No. 3"
+    },
+    {
+      "input": "RUSUNAWA CINERE BLOK A NO. 3 DEPOK",
+      "profile": "generic",
+      "expected": "Jl. Rusunawa Cinere Blok A No. 3"
+    },
+    {
+      "input": "JL. CENDANA NO. 12 BANDUNG JAWA BARAT",
+      "profile": "generic",
+      "expected": "Jl. Cendana No. 12"
+    },
+    {
+      "input": "PERUM GRIYA ASRI BLOK C NO. 7 BEKASI",
+      "profile": "generic",
+      "expected": "Jl. Perum Griya Asri Blok C No. 7"
+    },
+    {
+      "input": "DEMAK JAYA VII-A/46",
+      "expected": "Jl. Demak Jaya VII-A No. 46"
+    },
+    {
+      "input": "SULUNG 5-A/27 SBY",
+      "expected": "Jl. Sulung V-A No. 27"
+    },
+    {
+      "input": "SULUNG 5A/27",
+      "expected": "Jl. Sulung V-A No. 27"
+    },
+    {
+      "input": "ASEM JAYA 12/27 DUSUN. TEMBOK DUKUH",
+      "expected": "Jl. Asem Jaya XII No. 27"
+    },
+    {
+      "input": "APARTEMEN GUNAWANGSA TIDAR UNIT B 1911",
+      "expected": "Jl. Apartemen Gunawangsa Tidar Unit B No. 1911"
+    },
+    {
+      "input": "KALIBUTUH TIMUR II-A/10-C",
+      "expected": "Jl. Kalibutuh Timur II-A No. 10C"
+    },
+    {
+      "input": "KALIBUTUH TIMUR 2-A/10-C",
+      "expected": "Jl. Kalibutuh Timur II-A No. 10C"
+    },
+    {
+      "input": "KALIBUTUH TIMUR II A/10-A",
+      "expected": "Jl. Kalibutuh Timur II-A No. 10A"
+    },
+    {
+      "input": "KALIBUTUH 144-C BLK",
+      "expected": "Jl. Kalibutuh No. 144C"
+    },
+    {
+      "input": "KALIBUTUH BARAT 4/75 BLK",
+      "expected": "Jl. Kalibutuh Barat IV No. 75"
+    },
+    {
+      "input": "JL. KALIBUTUH NO. 144 BLK",
+      "expected": "Jl. Kalibutuh No. 144"
+    },
+    {
+      "input": "TEMBOK DKUH X//66 SURABAYA",
+      "expected": "Jl. Tembok Dkuh X No. 66"
+    },
+    {
+      "input": "ASEM JAJAR IV / 3 DUSUN. -",
+      "expected": "Jl. Asem Jajar IV No. 3"
+    },
+    {
+      "input": "ASEM JAYA I/9 SIRABAYA",
+      "expected": "Jl. Asem Jaya I No. 9"
+    },
+    {
+      "input": "TEMBOK SAYURAN II BUNTU/8",
+      "expected": "Jl. Tembok Sayuran Gg. II Buntu No. 8"
+    },
+    {
+      "input": "TEMBOK SAYURAN GG. MEI/15 SURABAYA",
+      "expected": "Jl. Tembok Sayuran Gg. Mei No. 15"
+    },
+    {
+      "input": "DEMAK JAYA I/5,7,8,9 SURABAYA",
+      "expected": "Jl. Demak Jaya I No. 5,7,8,9"
+    },
+    {
+      "input": "KALIBUTUH GG. LEBAR/63-H",
+      "expected": "Jl. Kalibutuh Gg. Lebar No. 63H"
+    },
+    {
+      "input": "JL. KALIBUTUH GG LEBAR NO. 63",
+      "expected": "Jl. Kalibutuh Gg. Lebar No. 63"
+    },
+    {
+      "input": "TEMBOK SAYURAN GG MEI BUNTU 10-B",
+      "expected": "Jl. Tembok Sayuran Gg. Mei Buntu No. 10B"
+    },
+    {
+      "input": "JL. KALIBUTUH GG. BUNTU NO.19",
+      "expected": "Jl. Kalibutuh Gg. Buntu No. 19"
+    },
+    {
+      "input": "TEMBOKSAYURAN GG MEI BUNTU 10B",
+      "expected": "Jl. Temboksayuran Gg. Mei Buntu No. 10B"
+    },
+    {
+      "input": "TAMBAK BAYAN 4 NO.4",
+      "expected": "Jl. Tambak Bayan IV No. 4"
+    },
+    {
+      "input": "TAMBAK BAYAN TENGAH 1 / 1",
+      "expected": "Jl. Tambak Bayan Tengah I No. 1"
+    },
+    {
+      "input": "TAMBAK BAYAN I NO I",
+      "expected": "Jl. Tambak Bayan I No. 1"
+    },
+    {
+      "input": "JL.JOHAR III BLK NO.41",
+      "expected": "Jl. Johar III No. 41"
+    },
+    {
+      "input": "",
+      "expected": ""
+    }
+  ],
+  "synonymCases": [
+    {
+      "input": "SULUNG 65-A",
+      "synonyms": {
+        "SULUNG": "SULUNG KALI"
+      },
+      "expected": "Jl. Sulung Kali No. 65A"
+    },
+    {
+      "input": "JOHAR BELAKANG NO 05",
+      "synonyms": {
+        "JOHAR BELAKANG": "JOHAR"
+      },
+      "expected": "Jl. Johar No. 5"
+    }
+  ]
+}

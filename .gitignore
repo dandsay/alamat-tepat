@@ -1,0 +1,27 @@
+# ---- Data pribadi: JANGAN pernah masuk repo engine ----
+*.csv
+*.CSV
+*.xlsx
+*.xls
+Data_Warga*
+
+# ---- Sampah OS / unduhan ----
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Node ----
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# ---- Demo: hasil build (dibuat ulang oleh npm run build:demo) ----
+demo/assets/
+demo/golden.json
+.wrangler/
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+*.swp
