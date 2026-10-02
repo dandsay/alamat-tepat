@@ -8,6 +8,25 @@ dikunci SHA-256.
 **Ini engine saja — tanpa UI, tanpa HTML.** Rangkai antarmuka Anda sendiri;
 engine menyediakan API murni (lihat "Pakai").
 
+## Untuk siapa
+
+Mesin ini lahir dari satu masalah sehari-hari: alamat yang ditulis banyak
+tangan — di KTP, formulir, dan daftar warga — ejaannya berbeda-beda untuk
+rumah yang sama. Pihak yang biasanya menghadapi masalah ini:
+
+- **Kelurahan / kecamatan / Disdukcapil** — membersihkan data alamat warga
+  sebelum sensus, verifikasi, atau sinkronisasi antar-sistem.
+- **Pengurus RT / RW dan lingkungan** — merekap alamat rumah per pintu dari
+  daftar yang ditulis banyak orang.
+- **Logistik, kurir, dan e-commerce** — menyeragamkan alamat tujuan sebelum
+  diteruskan ke geocoder atau armada antar.
+- **Bank, fintech, dan asuransi** — pra-pembersih alamat saat onboarding,
+  sebelum dicocokkan ke catatan Dukcapil.
+- **Rumah sakit, sekolah, dan kampus** — merapikan alamat pendaftar, pasien,
+  atau mahasiswa.
+- **Developer** — pustaka murni yang bisa ditanam di aplikasi apa pun:
+  tanpa server, tanpa kirim data ke mana pun.
+
 ## Arsitektur lapis
 
 | Lapis | Berkas | Tugas |
@@ -105,7 +124,7 @@ eng.standardizeAddress("SULUNG 2/11 SURABAYA");
 // → "Jl. Sulung II No. 11"   (ekor kota dibuang karena ada di profil)
 
 eng.standardizeAddress("KEPATIAN 2 NO. 7", { KEPATIAN: "KEPATIHAN" });
-// → "Jl. Kepatihan No. 7"    (kamus sinonim memperbaiki typo jalan)
+// → "Jl. Kepatihan II No. 7"   (kamus sinonim memperbaiki typo jalan)
 ```
 
 Untuk **kumpulan** alamat: standardize per baris, kumpulkan frekuensi nama
