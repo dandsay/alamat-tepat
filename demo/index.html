@@ -255,7 +255,7 @@
             <thead><tr><th style="text-align:left;border-bottom:1px solid var(--border);padding:6px;">MENTAH</th>
             <th style="text-align:left;border-bottom:1px solid var(--border);padding:6px;">BAKU</th></tr></thead>
             <tbody>${preview}</tbody></table>
-            ${pairs.size > 30 ? '<div class="hint">30 pasangan pertama saja — unduh untuk lengkap.</div>' : ''}`;
+            ${pairs.size > 30 ? '<div class="hint">30 pasangan pertama saja — unduh untuk lengkap.</div>' : ''}` : ""}`;
         document.getElementById("dlCsv").addEventListener("click", () => downloadPairs(pairs));
       } catch (err) {
         out.innerHTML = `<div class="baku ragu">Gagal memproses: ${esc(err.message)}</div>`;
