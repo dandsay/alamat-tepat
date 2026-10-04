@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# beku-be / freezeBE — pre-push: push manual tetap dipaksa lewat gate.
+set -e
+if [ "${BEKU_MESIN:-0}" = "1" ]; then exit 0; fi
+
+echo "[beku-be] pre-push: menjalankan gate proyek..."
+gagal=0
+if [ -f package.json ] && grep -q '"gate"' package.json; then
+  npm run --silent gate || gagal=1
+elif [ -f beku.config.json ] && [ -f beku.mjs ]; then
+  node beku.mjs check || gagal=1
+fi
+
+if [ "$gagal" = "1" ]; then
+  echo "[beku-be] GATE MERAH — push DITOLAK. Perbaiki uji/lainnya dulu."
+  exit 1
+fi
+echo "[beku-be] gate hijau — push diizinkan."

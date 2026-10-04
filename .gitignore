@@ -25,3 +25,8 @@ demo/golden.json
 .vscode/
 .idea/
 *.swp
+
+# freezeBE — diunduh dari server, JANGAN di-commit
+.agents/skills/beku-be/
+beku.mjs
+.beku-token

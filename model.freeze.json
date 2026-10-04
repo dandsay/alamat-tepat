@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "catatan": "Model mesin pembaku alamat: normalizer UMD + microservice HTTP tanpa dependensi",
+  "files": [
+    {
+      "path": "assets/js/normalizer.js",
+      "label": "Mesin normalisasi alamat (UMD, tanpa DOM/network)",
+      "functions": [
+        "createNormalizer",
+        "standardizeAddress",
+        "parseAddress",
+        "cleanAddressRaw",
+        "mergeProfiles",
+        "normNumber",
+        "romanToArabic",
+        "arabicToRoman"
+      ],
+      "constants": [
+        "ALGORITHM_VERSION",
+        "BASE_PROFILE"
+      ]
+    },
+    {
+      "path": "service/server.mjs",
+      "label": "Microservice HTTP normalisasi (tanpa dependensi)",
+      "functions": [
+        "send",
+        "readBody",
+        "pickEngine"
+      ],
+      "constants": [
+        "MAX_BODY_SINGLE",
+        "MAX_BODY_BATCH",
+        "MAX_BATCH"
+      ]
+    }
+  ]
+}

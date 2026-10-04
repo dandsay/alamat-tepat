@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# beku-be / freezeBE — pre-commit: commit manual tetap dipaksa lewat gate.
+set -e
+if [ "${BEKU_MESIN:-0}" = "1" ]; then exit 0; fi
+
+echo "[beku-be] pre-commit: menjalankan gate proyek (uji + segel + gerbang model)..."
+gagal=0
+if [ -f package.json ] && grep -q '"gate"' package.json; then
+  npm run --silent gate || gagal=1
+elif [ -f beku.config.json ] && [ -f beku.mjs ]; then
+  node beku.mjs check || gagal=1
+fi
+
+if [ "$gagal" = "1" ]; then
+  echo ""
+  echo "[beku-be] GATE MERAH — commit DITOLAK."
+  echo "[beku-be] Ringkas: perbaiki uji yang gagal di atas lebih dulu."
+  echo "[beku-be] Hanya bila SEMUA uji lain hijau & perubahan model disengaja:"
+  echo '[beku-be]   node beku.mjs terima --reason="alasan"'
+  if [ -f package.json ] && grep -q '"commit"' package.json; then
+    echo '[beku-be] Setelah hijau: npm run commit -- "pesan"'
+  fi
+  exit 1
+fi
+echo "[beku-be] gate hijau — commit diizinkan."

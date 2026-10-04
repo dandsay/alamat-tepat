@@ -3,7 +3,13 @@
   "version": "3.6.3",
   "description": "Mesin pembaku penulisan alamat Indonesia: pola (L1), fuzzy (L2), relasional (L3), kejujuran (L4) — murni, deterministik, tanpa DOM/network, dikunci SHA-256.",
   "license": "GPL-3.0-or-later",
-  "keywords": ["alamat", "normalisasi", "standardisasi-alamat", "indonesia", "engine"],
+  "keywords": [
+    "alamat",
+    "normalisasi",
+    "standardisasi-alamat",
+    "indonesia",
+    "engine"
+  ],
   "files": [
     "assets/",
     "tests/",
@@ -13,7 +19,9 @@
     "README.md",
     "LICENSE"
   ],
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "hash": "node tools/hash-algorithm.mjs",
     "verify": "node tools/verify.mjs",
@@ -22,5 +30,8 @@
     "test:audit": "node tests/audit.test.mjs",
     "release:engine": "node tools/release-engine.mjs",
     "build:demo": "rm -rf demo/assets demo/golden.json && cp -r assets demo/assets && cp tests/golden.json demo/golden.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
