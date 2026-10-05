@@ -30,3 +30,6 @@ demo/golden.json
 .agents/skills/beku-be/
 beku.mjs
 .beku-token
+
+# freezeBE — diunduh dari server, JANGAN di-commit
+.beku-link

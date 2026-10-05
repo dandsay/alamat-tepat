@@ -1,5 +1,7 @@
 {
   "registry": "https://freezebe.pemkot.workers.dev",
   "proyek": "alamat-tepat",
-  "model": "model.freeze.json"
+  "model": "model.freeze.json",
+  "tte": "https://tte.hidrologi.web.id",
+  "perangkat": "laptop"
 }
