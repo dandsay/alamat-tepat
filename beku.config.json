@@ -15,7 +15,9 @@
         "mergeProfiles",
         "normNumber",
         "romanToArabic",
-        "arabicToRoman"
+        "arabicToRoman",
+        "titleCaseStreet",
+        "fuzzyCityTail"
       ],
       "constants": [
         "ALGORITHM_VERSION",
@@ -31,7 +33,9 @@
         "romanToArabic": "Mengubah angka Romawi menjadi angka Arab untuk dipakai saat menyeragamkan nomor gang atau blok alamat.",
         "arabicToRoman": "Mengubah angka Arab menjadi angka Romawi untuk dipakai saat menulis nomor gang sesuai kaidah baku alamat.",
         "ALGORITHM_VERSION": "Menandai versi algoritma normalisasi mesin alamat untuk dipakai saat pemeriksaan kesehatan layanan dan penelusuran rilis.",
-        "BASE_PROFILE": "Menyediakan profil wilayah dasar universal untuk dipakai sebagai fondasi saat membuat normalizer tanpa data daerah."
+        "BASE_PROFILE": "Menyediakan profil wilayah dasar universal untuk dipakai sebagai fondasi saat membuat normalizer tanpa data daerah.",
+        "titleCaseStreet": "Kapitalisasi & override nama jalan (termasuk Romawi); dipakai setiap standardizeAddress.",
+        "fuzzyCityTail": "Pembuang typo kota/provinsi di ujung alamat; salah ambang memotong nama jalan."
       }
     },
     {
@@ -54,6 +58,39 @@
         "MAX_BODY_SINGLE": "Membatasi ukuran badan permintaan tunggal agar aman untuk dipakai saat validasi payload endpoint standardisasi.",
         "MAX_BODY_BATCH": "Membatasi ukuran badan permintaan batch agar aman untuk dipakai saat validasi payload standardisasi massal.",
         "MAX_BATCH": "Membatasi jumlah alamat per batch untuk dipakai saat mencegah kelebihan beban pada endpoint standardisasi massal."
+      }
+    },
+    {
+      "path": "assets/js/confidence.js",
+      "label": "Lapisan keyakinan alamat",
+      "functions": [
+        "scoreDoor"
+      ],
+      "constants": [],
+      "kegunaan": {
+        "scoreDoor": "Skor & label keyakinan (YAKIN/PERIKSA/RAGU); perubahan senyap menggeser prioritas review manusia."
+      }
+    },
+    {
+      "path": "assets/js/relational.js",
+      "label": "Relasional L3 (vonis gabung pintu)",
+      "functions": [
+        "analyzeDoor"
+      ],
+      "constants": [],
+      "kegunaan": {
+        "analyzeDoor": "Vonis state-machine L3 (MERGE_OK/SOLO/TWIN_RT/ABSTAIN) penentu penggabungan pintu."
+      }
+    },
+    {
+      "path": "assets/js/fuzzy.js",
+      "label": "Fuzzy L2 (saran typo)",
+      "functions": [
+        "suggest"
+      ],
+      "constants": [],
+      "kegunaan": {
+        "suggest": "Mesin saran typo (blocking, ambang, ranking) — mengubah koreksi nama jalan bila berubah."
       }
     }
   ]
