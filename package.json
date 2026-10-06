@@ -29,7 +29,8 @@
     "test:lapis": "node tests/lapis.test.mjs",
     "test:audit": "node tests/audit.test.mjs",
     "release:engine": "node tools/release-engine.mjs",
-    "build:demo": "rm -rf demo/assets demo/golden.json && cp -r assets demo/assets && cp tests/golden.json demo/golden.json"
+    "build:demo": "rm -rf demo/assets demo/golden.json && cp -r assets demo/assets && cp tests/golden.json demo/golden.json",
+    "pretest": "node \"$HOME/.beku/bin/beku.mjs\" check"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
