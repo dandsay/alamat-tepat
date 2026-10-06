@@ -18,7 +18,19 @@
       "constants": [
         "ALGORITHM_VERSION",
         "BASE_PROFILE"
-      ]
+      ],
+      "kegunaan": {
+        "createNormalizer": "Membuat instance normalizer dengan profil wilayah gabungan untuk dipakai sebelum standardisasi dan parsing alamat KTP.",
+        "standardizeAddress": "Mengubah alamat mentah menjadi format baku Jl. ... untuk dipakai saat menampilkan atau membakukan hasil input pengguna.",
+        "parseAddress": "Menguraikan alamat menjadi komponen jalan, blok, gang, dan nomor untuk dipakai saat analisis atau penilaian keyakinan hasil.",
+        "cleanAddressRaw": "Membersihkan noise seperti RT/RW, kota, dan tanda baca dari alamat mentah untuk dipakai pada tahap awal normalisasi.",
+        "mergeProfiles": "Menggabungkan beberapa profil wilayah menjadi satu konfigurasi untuk dipakai saat membangun normalizer multi-daerah.",
+        "normNumber": "Menyeragamkan penulisan nomor rumah seperti sufiks huruf dan nol depan untuk dipakai saat parsing nomor alamat.",
+        "romanToArabic": "Mengubah angka Romawi menjadi angka Arab untuk dipakai saat menyeragamkan nomor gang atau blok alamat.",
+        "arabicToRoman": "Mengubah angka Arab menjadi angka Romawi untuk dipakai saat menulis nomor gang sesuai kaidah baku alamat.",
+        "ALGORITHM_VERSION": "Menandai versi algoritma normalisasi mesin alamat untuk dipakai saat pemeriksaan kesehatan layanan dan penelusuran rilis.",
+        "BASE_PROFILE": "Menyediakan profil wilayah dasar universal untuk dipakai sebagai fondasi saat membuat normalizer tanpa data daerah."
+      }
     },
     {
       "path": "service/server.mjs",
@@ -32,7 +44,15 @@
         "MAX_BODY_SINGLE",
         "MAX_BODY_BATCH",
         "MAX_BATCH"
-      ]
+      ],
+      "kegunaan": {
+        "send": "Mengirim respons JSON dengan kode status HTTP untuk dipakai setiap endpoint microservice saat menjawab permintaan klien.",
+        "readBody": "Membaca dan membatasi badan permintaan HTTP agar aman untuk dipakai sebelum memproses payload standardisasi tunggal atau batch.",
+        "pickEngine": "Memilih instance engine sesuai profil wilayah untuk dipakai saat melayani permintaan standardisasi dengan konteks daerah.",
+        "MAX_BODY_SINGLE": "Membatasi ukuran badan permintaan tunggal agar aman untuk dipakai saat validasi payload endpoint standardisasi.",
+        "MAX_BODY_BATCH": "Membatasi ukuran badan permintaan batch agar aman untuk dipakai saat validasi payload standardisasi massal.",
+        "MAX_BATCH": "Membatasi jumlah alamat per batch untuk dipakai saat mencegah kelebihan beban pada endpoint standardisasi massal."
+      }
     }
   ]
 }
