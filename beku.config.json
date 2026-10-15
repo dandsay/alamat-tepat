@@ -93,5 +93,6 @@
         "suggest": "Mesin saran typo (blocking, ambang, ranking) — mengubah koreksi nama jalan bila berubah."
       }
     }
-  ]
+  ],
+  "vps": "wajib"
 }
