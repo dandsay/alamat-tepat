@@ -6,12 +6,12 @@ Jalankan di VPS mana pun dengan Node ≥ 18.
 ## Jalankan lokal
 
 ```bash
-node service/server.mjs --port 3000
-curl -s localhost:3000/health
-curl -s -X POST localhost:3000/v1/standardize \
+node service/server.mjs --port 8087
+curl -s localhost:8087/health
+curl -s -X POST localhost:8087/v1/standardize \
   -H 'Content-Type: application/json' \
   -d '{"address":"TAMBAK BAYAN 4 NO.4"}'
-curl -s -X POST localhost:3000/v1/standardize/batch \
+curl -s -X POST localhost:8087/v1/standardize/batch \
   -H 'Content-Type: application/json' \
   -d '{"addresses":["TAMBAK BAYAN 4 NO.4","JL.JOHAR III BLK NO.41"]}'
 ```
@@ -27,7 +27,7 @@ curl -s -X POST localhost:3000/v1/standardize/batch \
 
 Isi request tidak pernah ditulis ke log.
 
-## Deploy ke VPS (systemd + Caddy untuk TLS)
+## Deploy ke VPS (systemd + Cloudflare Tunnel)
 
 ```bash
 # di VPS: salin repo, lalu
@@ -39,9 +39,9 @@ After=network.target
 [Service]
 User=www-data
 WorkingDirectory=/opt/alamat-tepat
-ExecStart=/usr/bin/node service/server.mjs --port 3000
+ExecStart=/usr/bin/node service/server.mjs --port 8087
 Restart=always
-Environment=PORT=3000
+Environment=PORT=8087
 
 [Install]
 WantedBy=multi-user.target
@@ -49,13 +49,19 @@ EOF
 sudo systemctl enable --now alamat-tepat
 ```
 
-```caddyfile
-# /etc/caddy/Caddyfile — ganti dengan domain Anda
-api.alamatcontoh.id {
-    reverse_proxy 127.0.0.1:3000
-}
+Tambahkan ingress di tunnel VPS (pola Snowman VPS saat ini — lihat skill `snowman-vps`):
+
+```yaml
+# /etc/cloudflared/config.yml — sisipkan sebelum baris catch-all terakhir
+  - hostname: api.alamatcontoh.id
+    service: http://localhost:8087
+```
+
+Terapkan (⚠️ SSH juga lewat tunnel yang sama — jangan sampai memutus diri sendiri):
+
+```bash
+systemd-run --no-block systemctl restart cloudflared
 ```
 
 Kebutuhan VPS: Linux apa pun + Node ≥ 18, RAM ±50 MB. Service bind ke
-`127.0.0.1` — hanya reverse proxy yang boleh meneruskannya ke publik.
-Buka firewall hanya 80/443.
+`127.0.0.1`; tidak perlu membuka port publik apa pun — akses masuk lewat Cloudflare Tunnel (TLS diterminasi di edge Cloudflare, tanpa reverse proxy/TLS lokal).
